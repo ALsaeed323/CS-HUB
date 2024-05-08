@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head' , {title:title}) %>
+  </head>
+  <body>
+    <div class="d-flex flex-column site-container">
+    <header><%- include('../partials/header',{cats,user,cart}) %></header>
+    <main>
+      <div class="container mt-3">
+        <% switch (path) {
+          case "reports": %>
+          <%- include('./reports'); %>
+          <% break;
+          case "/index": %>
+          <%- include('./index'); %>
+          <% break;
+          case "adminreports": %>
+          <%- include('./adminreports',{reports}); %>
+          <% break;
+          case "forgetpass": %>
+          <%- include('./forgetpass'); %>
+          <% break;
+            case "signin": %>
+            <%- include('./signin'); %>
+          <% break;
+            case "products": %>
+            <%- include('./products',{products}); %>
+            <% break;
+            case "product": %>
+            <%- include('./product',{product}); %>
+            <% break;
+            case "signup": %>
+            <%- include('./signup'); %>
+            <% break;
+            case "search": %>
+            <%- include('./search',{prices,cats,q,countProducts,page,pages}); %>
+            <% break;
+            case "cart": %>
+            <%- include('./cart',{cart,user}); %>
+            <% break;
+            case "payment": %>
+            <%- include('./payment',{user}); %>
+            <% break;
+            case "shipping": %>
+            <%- include('./shipping'); %>
+            <% break;
+            case "placeorder": %>
+            <%- include('./placeorder',{user,cart}); %>
+            <% break;
+            case "order": %>
+            <%- include('./order',{order,user}); %>
+            <% break;
+            case "profile": %>
+            <%- include('./profile',{user}); %>
+            <% break;
+            case "orders": %>
+            <%- include('./orders',{orders}); %>
+            <% break;
+            case "/admin/products": %>
+            <%- include('./adminproducts',{products,countProducts,page,pages}); %>
+            <% break;
+            case "/admin/users": %>
+            <%- include('./userlist',{users}); %>
+            <% break;
+            case "/admin/user/edit": %>
+            <%- include('./useredit',{user:currentUser}); %>
+            <% break;
+            case "/admin/orders": %>
+            <%- include('./orderlist',{orders}); %>
+            <% break;
+            case "/admin/product": %>
+            <%- include('./updateproduct',{product}); %>
+            <% break;
+            case "/admin/addproduct": %>
+            <%- include('./addproduct'); %>
+            <% break;
+            case "/admin/dashboard": %>
+            <%- include('./dashboard',{countUsers,countOrders,sumOfSales,categories}); %>
+            <% break;
+            case "/admin/updateproduct": %>
+            <%- include('./updateproduct'); %>
+            <% break;
+            case "/admin/addnewuser": %>
+            <%- include('./addnewuser'); %>
+            <%break;
+            case "/user/resetpass": %>
+            <%- include('./resetpass',{email}); %>
+            <%break;
+            default:%>
+            <h1>Error 404 : No Page found</h1>
+            <%break; } %>
+      </div>
+      </main>
+      <% if(typeof user !== "undefined") { %>
+        <%- include('./chat',{user}); %>
+      <% } %>
+    <footer><%- include('../partials/footer') %></footer>
+  </div>
+</body>
+</html>
