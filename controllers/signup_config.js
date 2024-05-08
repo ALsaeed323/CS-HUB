@@ -25,6 +25,7 @@ const signupform = async (req,res)=>{
         mail: req.body.signupEmail,
         password: hashedPassword,
         cpassword: hashedcPassword,
+        Type:req.body.Type,
         
       });
 

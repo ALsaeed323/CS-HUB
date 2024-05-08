@@ -25,7 +25,10 @@ const SignupSchema = new Schema({
     required: true,
     
   },
-  
+  Type: {
+    type: String,
+    required: true
+  },
   cart: [{
         type: String
   }],

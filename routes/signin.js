@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import  signinform  from '../controllers/signin_config.js'
 
 
 
@@ -12,5 +13,7 @@ res.render("pages/signin");
  
 });
 
+
+router.post("/signinform",signinform.signinform);
 
 export default router;
