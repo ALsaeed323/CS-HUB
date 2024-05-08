@@ -10,7 +10,8 @@ import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 
 
-// import homepage_router from "./routes/homepage.js";
+import signup_router from "./routes/signup.js";
+import signin_router from "./routes/signin.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -35,7 +36,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs"); // Assuming you're using the EJS view engine
 
 
-// app.use('/', homepage_router);
+app.use('/',signup_router);
+app.use('/',signin_router);
 app.get("/", async (req, res) => {
     // Render the index page
     res.render('pages/index');
@@ -63,20 +65,17 @@ app.get("/", async (req, res) => {
 //   });
 
 
-//
-//mongodb+srv://ahmedmohamed1jan2003:hS8epPZAaglQpiGx@cluster0.4giicn8.mongodb.net/
-//mongodb+srv://ahmed2110223:Bi1rExHxs1QSCUpP@webproject.fve9yw3.mongodb.net/test?retryWrites=true&w=majority
-//mongodb+srv://ahmedmohamed1jan2003:hS8epPZAaglQpiGx@cluster0.4giicn8.mongodb.net/training?retryWrites=true&w=majority
 
-// mongoose.connect("mongodb+srv://ahmedmohamed1jan2003:hS8epPZAaglQpiGx@cluster0.4giicn8.mongodb.net/training?retryWrites=true&w=majority")
-// .then(()=>{
 
-//     console.log(`Example app listening on port ${process.env.PORT}`)
-//   })
-// .catch((error)=>{
-//     console.log("there is error")
-//   console.log(error)
-// })
+mongoose.connect("mongodb+srv://alsaead2110679:Xj7BcXb1bzA7TQAO@cluster0.vnvsld0.mongodb.net/")
+.then(()=>{
+
+    console.log(`mongoo app listening on port ${process.env.PORT}`)
+  })
+.catch((error)=>{
+    console.log("there is error")
+  console.log(error)
+})
 
 app.listen(PORT, () => {
   console.log(`Server is listening on http://${hostname}:${PORT}`);
