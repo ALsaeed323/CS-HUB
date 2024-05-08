@@ -12,6 +12,7 @@ import fileUpload from 'express-fileupload';
 import homepage_router from "./routes/homepage.js";
 import signup_router from "./routes/signup.js";
 import signin_router from "./routes/signin.js";
+import courses_router from "./routes/courses.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -38,6 +39,7 @@ app.set("view engine", "ejs"); // Assuming you're using the EJS view engine
 app.use('/', homepage_router);
 app.use('/',signup_router);
 app.use('/',signin_router);
+app.use('/',courses_router);
 
   
 
@@ -45,7 +47,7 @@ app.use('/',signin_router);
 
 
 
-mongoose.connect("mongodb+srv://alsaead2110679:Xj7BcXb1bzA7TQAO@cluster0.vnvsld0.mongodb.net/")
+mongoose.connect(`mongodb+srv://alsaead2110679:${process.env.PASSWORD}@cluster0.vnvsld0.mongodb.net/`)
 .then(()=>{
 
     console.log(`mongoo app listening on port ${process.env.PORT}`)

@@ -1,0 +1,44 @@
+<head>
+  <%- include('../partials/head'); %>
+  <%- include('../partials/header'); %>
+</head>
+<div class="container courses">
+  <h1>Latest courses</h1>
+  <div class="courses">
+    <div class="row">
+      <% Courses.forEach(function(course) { %>
+        <div class="col-sm-8 col-md-4 col-lg-3">
+          <div class="card">
+            <a href=<%="/courses/" +course._id %>
+              >
+              <img class="card-img-top" alt="<%= course.name%>" src=<%=course.image %>
+              />
+            </a>
+            <div class="card-body">
+
+              <a href=<%="/courses/" +course._id %>>
+                <h5 class="card-title">
+                  <%= course.name %>
+                </h5>
+              </a>
+              <!-- Rating component would be here, but it cannot be converted directly to HTML -->
+              <p class="card-text">$<%= course.price %>
+              </p>
+              <!-- The following buttons would need JavaScript for functionality -->
+              <% if (course.countInStock === 0) { %>
+                <button class="btn btn-light" disabled>Out of stock</button>
+              <% } else { %>
+                <button
+                  class="btn btn-primary"
+                  onclick="addToCartHandler('<%= course._id %>')"
+                >
+                  Add to cart
+                </button>
+                <% }  %>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+    </div>
+  </div>
+</div>
