@@ -18,7 +18,9 @@ const signinform = async (req, res) => {
         console.log("User found and password matched:", user);
         req.session.User = user;
         if(req.session.User.Type==='user'){
-        res.redirect("/")
+   
+          res.render('pages/index', { user: req.session.User });
+  
         }
     else{
 res.redirect('/dashboard')
