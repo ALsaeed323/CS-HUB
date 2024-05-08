@@ -9,7 +9,7 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 
-
+import homepage_router from "./routes/homepage.js";
 import signup_router from "./routes/signup.js";
 import signin_router from "./routes/signin.js";
 
@@ -35,34 +35,12 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs"); // Assuming you're using the EJS view engine
 
-
+app.use('/', homepage_router);
 app.use('/',signup_router);
 app.use('/',signin_router);
-app.get("/", async (req, res) => {
-    // Render the index page
-    res.render('pages/index');
-  });
+
   
-  
-//   app.get("/:route", async (req, res) => {
-//     const title = {
-//       signin: "Sign In",
-//       signup: "Sign Up",
-//       about: "About Us",
-//       contact: "Contact Us",
-//       cart: "Cart",
-//       search: "Search",
-//       chat:"Chat",
-//     };
-//    // const cats = await Product.find().distinct("category"); //["Pants,Shitrs","Hoodie"]
-//     res.render("/pages/route", {
-//     //   path: req.params.route.toLowerCase(), //the path that user entered
-//     //   title: title[req.params.route], //the title of the page
-//     //   cats, //the categories 
-//     //   user: req.session.user, //the user
-//     //   cart: req.session.cart, //the cart
-//     });
-//   });
+
 
 
 

@@ -4,13 +4,13 @@
 </head>
 <div class="small-container container">
   <h3 class="my-3">Sign Up</h3>
-  <form id="signupForm" onsubmit="signupHandler(event)">
+  <form  method="post" action="/signupform" id="signupForm" >
     <div class="mb-3">
       <label for="name" class="form-label">Name</label>
       <input
         type="text"
         class="form-control"
-        id="signupName"
+        name="signupName"
         required
         placeholder="Enter Name"
       />
@@ -21,7 +21,7 @@
       <input
         type="email"
         class="form-control"
-        id="signupEmail"
+        name="signupEmail"
         required
         placeholder="Enter email"
       />
@@ -32,7 +32,7 @@
       <input
         type="password"
         class="form-control"
-        id="signupPassword"
+        name="signupPassword"
         required
         placeholder="Enter Password"
       />
@@ -43,7 +43,7 @@
       <input
         type="password"
         class="form-control"
-        id="signupConfirmPassword"
+        name="signupConfirmPassword"
         required
         placeholder="Confirm Password"
       />
