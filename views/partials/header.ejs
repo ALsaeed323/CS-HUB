@@ -53,7 +53,7 @@
           >
             <%= user.fullname %>
 
-            <% if (user.isAdmin == true){%>
+            <% if (user.Type == 'Admin'){%>
           </a>
               <ul class="dropdown-menu" aria-labelledby="basic-nav-dropdown">
                 <li>
@@ -76,7 +76,7 @@
                 </li>
                 <li><hr class="dropdown-divider" /></li>
               
-              <%}else{%>
+              <%}else if (user.Type == 'user'){%>
           </a>
           <ul class="dropdown-menu" aria-labelledby="basic-nav-dropdown">
             <li>
@@ -90,11 +90,13 @@
             </li>
             <li><hr class="dropdown-divider" /></li>
             <%}%>
+            <form method="post" action="/logout">
             <li>
-              <a class="dropdown-item" href="/" onclick="signoutHandler(event)"
+              <a class="dropdown-item" href="/"
                 >Sign Out</a
               >
             </li>
+          </form>
           </ul>
         </li>
         <% } else {%>

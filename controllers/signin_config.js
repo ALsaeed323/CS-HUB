@@ -23,7 +23,10 @@ const signinform = async (req, res) => {
   
         }
     else{
-res.redirect('/dashboard')
+   
+         
+
+      res.render('pages/index', { user: req.session.User });
     }
         
       } else {

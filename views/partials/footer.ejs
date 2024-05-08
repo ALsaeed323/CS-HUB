@@ -20,26 +20,7 @@
   };
 
   
-  const signoutHandler = (e) => {
-    e.preventDefault();
-    fetch("/user/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      if (res.status === 200) {
-        if (window.location.href === "/") {
-          location.reload();
-        }
-        else {
-          window.location.href = "/";
-        }
-      } else {
-        console.log("Failed to sign out");
-      }
-    });
-  };
+
   const searchHandler = (e) => {
     e.preventDefault();
     const q = document.getElementById("q").value;
