@@ -9,10 +9,12 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 
+
 import homepage_router from "./routes/homepage.js";
 import signup_router from "./routes/signup.js";
-import signin_router from "./routes/user_router.js";
-import courses_router from "./routes/courses.js";
+import user_router from "./routes/user_router.js";
+import courses_router from "./routes/Resource.js";
+import admin_router from "./routes/admin_router.js";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -36,10 +38,13 @@ app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs"); // Assuming you're using the EJS view engine
 
+
 app.use('/', homepage_router);
 app.use('/',signup_router);
-app.use('/',signin_router);
+app.use('/',user_router);
 app.use('/',courses_router);
+app.use('/',admin_router);
+
 
   
 

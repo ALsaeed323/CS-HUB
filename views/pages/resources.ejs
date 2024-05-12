@@ -6,35 +6,30 @@
   <h1>Latest courses</h1>
   <div class="courses">
     <div class="row">
-      <% Courses.forEach(function(course) { %>
+      <% resource.forEach(function(resource) { %>
         <div class="col-sm-8 col-md-4 col-lg-3">
           <div class="card">
-            <a href=<%="/courses/" +course._id %>
+            <a href=<%="/resource/" +resource._id %>
               >
-              <img class="card-img-top" alt="<%= course.name%>" src=<%=course.image %>
+              <img class="card-img-top" alt="<%= resource.name%>" src=<%=resource.image%>
               />
             </a>
             <div class="card-body">
 
-              <a href=<%="/courses/" +course._id %>>
+              <a href=<%="/resource/" +resource._id %>>
                 <h5 class="card-title">
-                  <%= course.name %>
+                  <%= resource.name %>
                 </h5>
               </a>
               <!-- Rating component would be here, but it cannot be converted directly to HTML -->
-              <p class="card-text">$<%= course.price %>
-              </p>
-              <!-- The following buttons would need JavaScript for functionality -->
-              <% if (course.countInStock === 0) { %>
-                <button class="btn btn-light" disabled>Out of stock</button>
-              <% } else { %>
+            
                 <button
                   class="btn btn-primary"
-                  onclick="addToCartHandler('<%= course._id %>')"
+                  onclick="addToCartHandler('<%= resource._id %>')"
                 >
                   Add to cart
                 </button>
-                <% }  %>
+               
             </div>
           </div>
         </div>

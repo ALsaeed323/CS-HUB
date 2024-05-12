@@ -7,8 +7,6 @@ import  user_config from '../controllers/user_config.js'
 var router = Router();
 
 router.get('/signin', function(req, res) {
- 
-  
 res.render("pages/signin");
 
  
