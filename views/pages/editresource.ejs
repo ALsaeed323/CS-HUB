@@ -1,0 +1,79 @@
+
+<%- include('../partials/adminnav'); %>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+    <title>Admin panel</title>
+   
+
+</head>
+
+
+<div class="container">
+
+
+
+    <div class="main" id="editproduct">
+        <div class="formcards">
+            <div class="formcard">
+                <div class="card-content form-container">
+
+                    <h1>Update Resource</h1>
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label class="form-label">ID</label>
+                            <input type="text" class="form-control" name="id" required
+                                value="<?php echo $productDetails['id'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" required
+                                value="<?php echo $productDetails['name'] ?>">
+                        </div>
+                        <div class="mb-3">
+                        <label for="stock">Select a Category:</label>
+                        <select class="form-control" id="type" name="category">
+                            <option value=" " >
+                                
+                            </option>
+                            <option value="Software-Engineer">Software Engineer</option>
+                            <option value="Cyber-Security">Cyber Security</option>
+                            <option value="AI">AI</option>
+                        </select>
+
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="newProductSlug" class="form-label">Stock</label>
+                            <input type="text" class="form-control" name="stock" required
+                                value="<?php echo $productDetails['stock'] ?>">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="newProductSlug" class="form-label">Price</label>
+                            <input type="text" class="form-control" name="price" required
+                                value="<?php echo $productDetails['price'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <input type="text" class="form-control" name="description" required
+                                value="<?php echo $productDetails['description'] ?>">
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" name="updateproduct" value="Update Product"
+                                style="background-color: #007BFF; color: #fff; padding: 10px 20px; border: none; cursor: pointer;">
+                        </div>
+                    </form>
+                    <a style="color: black; font-weight: 500; font-size: 20px; " href='changepictures?id=<?php echo $productDetails['id'] ?>'>change photos?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>

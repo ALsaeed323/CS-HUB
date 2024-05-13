@@ -1,5 +1,4 @@
 import Resource from "../models/resource_schema.js";
-import { uploadImage } from "../controllers/uploadControllers.js";
 
 const addResource = async (req, res) => {
   try {
@@ -17,9 +16,9 @@ const addResource = async (req, res) => {
 
     // Save the resource to the database
     const savedResource = await newResource.save();
+    
 
-    // Send a success response
-    res.status(201).json(savedResource);
+    res.redirect('/adminDashboard');
   } catch (error) {
     // If an error occurs, send an error response
     res.status(500).json({ error: error.message });
