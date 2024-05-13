@@ -20,7 +20,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use(session({ secret: "Your_Secret_Key" }));
+app.use(session({ 
+  secret: "Your_Secret_Key",
+  resave: false,
+  saveUninitialized: false
+}));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));

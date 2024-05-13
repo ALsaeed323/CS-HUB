@@ -6,6 +6,7 @@ import { isAdmin } from "../controllers/authusers.js";
 var router = Router();
 
 router.get("/adminDashboard",  isAdmin, function (req, res) {
+  
   res.render("pages/adminDashboard");
 });
 router.get("/addresource",  isAdmin, function (req, res) {

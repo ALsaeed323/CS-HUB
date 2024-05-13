@@ -1,14 +1,15 @@
 const isAuth = (req, res, next) => {
-    if (req.session.user) {
+    if (req.session.User) {
       next();
     } else {
       res.redirect("/signin");
     }
   };
   const isAdmin = (req, res, next) => {
-    if (req.session.user && req.session.user.Type=='Admin') {
+    if (req.session.User && req.session.User.Type=='Admin') {
       next();
     } else {
+       
       res.redirect("/");
     }
   };

@@ -14,7 +14,7 @@ res.render("pages/signin");
 });
 
 
-router.post("/signinform",signinform.signinform);
+router.post("/",signinform.signinform);
 router.post("/logout",user_config.logout);
 
 export default router;
