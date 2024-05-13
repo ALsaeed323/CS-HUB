@@ -1,5 +1,6 @@
 import Resource from "../models/resource_schema.js";
 
+
 const addResource = async (req, res) => {
   try {
     // Extract data from the request body
