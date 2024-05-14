@@ -27,13 +27,12 @@ const addResource = async (req, res) => {
 };
 const updateResource = async (req, res) => {
   try {
-    // Extract resource ID from the request parameters
-    const resourceId = req.params.id;
+    const resourceId = req.params.id; // Extract resource ID from URL parameter
+    
 
-    // Find the resource by ID in the database
     let resource = await Resource.findById(resourceId);
+   
 
-    // If resource not found, return 404 status
     if (!resource) {
       return res.status(404).json({ error: "Resource not found" });
     }
@@ -47,13 +46,17 @@ const updateResource = async (req, res) => {
     // Save the updated resource to the database
     const updatedResource = await resource.save();
 
+    
+
     // Send a success response with the updated resource
-    res.status(200).json(updatedResource);
+    res.redirect('/adminDashboard');
   } catch (error) {
     // If an error occurs, send an error response
     res.status(500).json({ error: error.message });
   }
 };
+
+
 const deleteResource = async (req, res) => {
   try {
     // Extract resource ID from the request parameters
@@ -68,19 +71,23 @@ const deleteResource = async (req, res) => {
     }
 
     // Delete the resource from the database
-    await resource.remove();
+    await resource.deleteOne();
 
     // Send a success response
-    res.status(200).json({ message: "Resource deleted successfully" });
+    res.redirect('/adminDashboard');
   } catch (error) {
     // If an error occurs, send an error response
     res.status(500).json({ error: error.message });
   }
 };
 
+
+
+
 const admin_config = {
   addResource,
   updateResource,
   deleteResource,
+  
 };
 export default admin_config;
