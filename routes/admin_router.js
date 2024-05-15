@@ -9,7 +9,7 @@ var router = Router();
 router.get("/adminDashboard",  isAdmin, async function (req, res) {
   const resources = await Resource.find();
       
-  res.render("pages/adminDashboard", { resources });
+  res.render("pages/adminDashboard", { resources  });
 });
 router.get("/addresource",  isAdmin, function (req, res) {
   res.render("pages/addresource");

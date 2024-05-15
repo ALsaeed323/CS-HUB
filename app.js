@@ -13,6 +13,7 @@ import signup_router from "./routes/signup.js";
 import user_router from "./routes/user_router.js";
 import courses_router from "./routes/Resource.js";
 import admin_router from "./routes/admin_router.js";
+import Chat  from "./models/chat_schema.js";
 // Load environment variables from .env file
 dotenv.config();
 const hostname = "127.0.0.1";
@@ -62,19 +63,19 @@ mongoose
     console.log(error);
   });
   
-io.on("connection", function (socket) {
-  socket.on("newuser", function (username) {
-    socket.broadcast.emit("update", username + " joined the conversation");
+  io.on("connection", function (socket) {
+    socket.on("newuser", function (username) {
+      socket.broadcast.emit("update", username + " joined the conversation");
+    });
+  
+    socket.on("exituser", function (username) {
+      socket.broadcast.emit("update", username + " left the conversation");
+    });
+  
+    socket.on("chat", function (message) {
+      socket.broadcast.emit("chat", message);
+    });
   });
-
-  socket.on("exituser", function (username) {
-    socket.broadcast.emit("update", username + " left the conversation");
-  });
-
-  socket.on("chat", function (message) {
-    socket.broadcast.emit("chat", message);
-  });
-});
 
 server.listen(PORT, () => {
   console.log(`Server is listening on http://${hostname}:${PORT}`);

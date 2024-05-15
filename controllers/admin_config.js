@@ -18,7 +18,7 @@ const addResource = async (req, res) => {
     // Save the resource to the database
     const savedResource = await newResource.save();
     
-
+    req.session.User
     res.redirect('/adminDashboard');
   } catch (error) {
     // If an error occurs, send an error response
@@ -47,7 +47,7 @@ const updateResource = async (req, res) => {
     const updatedResource = await resource.save();
 
     
-
+    req.session.User
     // Send a success response with the updated resource
     res.redirect('/adminDashboard');
   } catch (error) {
@@ -74,6 +74,7 @@ const deleteResource = async (req, res) => {
     await resource.deleteOne();
 
     // Send a success response
+    req.session.User
     res.redirect('/adminDashboard');
   } catch (error) {
     // If an error occurs, send an error response
