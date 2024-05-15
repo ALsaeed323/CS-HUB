@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import path from "path";
+import { createServer } from "http";
+import { Server } from 'socket.io';
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import session from "express-session";
@@ -18,6 +20,8 @@ const PORT = process.env.PORT || 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
+const server = createServer(app);
+const io = new Server(server);
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(session({ 
@@ -57,8 +61,22 @@ mongoose
     console.log("there is error");
     console.log(error);
   });
+  
+io.on("connection", function (socket) {
+  socket.on("newuser", function (username) {
+    socket.broadcast.emit("update", username + " joined the conversation");
+  });
 
-app.listen(PORT, () => {
+  socket.on("exituser", function (username) {
+    socket.broadcast.emit("update", username + " left the conversation");
+  });
+
+  socket.on("chat", function (message) {
+    socket.broadcast.emit("chat", message);
+  });
+});
+
+server.listen(PORT, () => {
   console.log(`Server is listening on http://${hostname}:${PORT}`);
 });
 
