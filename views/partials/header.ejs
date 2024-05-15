@@ -90,13 +90,12 @@
             </li>
             <li><hr class="dropdown-divider" /></li>
             <%}%>
-            <form method="post" action="/logout">
-            <li>
-              <a class="dropdown-item" href="/"
-                >Sign Out</a
-              >
-            </li>
-          </form>
+            <form id="logoutForm" action="/logout" method="post" >
+              <li>
+                <a href="#" class="dropdown-item" id="signOutLink">Sign Out</a>
+              </li>
+            </form>
+            
           </ul>
         </li>
         <% } else {%>
@@ -108,3 +107,9 @@
     </div>
   </div>
 </nav>
+<script>
+  document.getElementById('signOutLink').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default link behavior (navigating to href)
+    document.getElementById('logoutForm').submit(); // Submit the form
+  });
+</script>
