@@ -69,7 +69,7 @@
   '<% if (typeof user !== "undefined" && user.Type === "Admin") { %>'
               username = "Admin";
  ' <% } else { %>'
-              username = "<%= typeof user !== "undefined" ? user.fullname : '' %>";
+              username = '<%= typeof user !== "undefined" ? user.fullname : " "%>';
   '<% } %>'
 
         
