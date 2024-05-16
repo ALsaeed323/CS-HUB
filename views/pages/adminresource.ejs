@@ -544,6 +544,7 @@ form {
             <th>Category</th>
             <th>Link</th>
             <th>Description</th>
+            <th>Notification</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -554,6 +555,7 @@ form {
               <td><%= resource.category %></td>
               <td><a href="<%= resource.link %>">Link <i class="fas fa-external-link-alt"></i></a></td>
               <td><%= resource.description %></td>
+              <td><%= resource.notification %></td>
               <td>
                 <!-- Update button -->
                 <form action="/updateResource/<%= resource._id %>" method="GET">

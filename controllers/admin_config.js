@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 const addResource = async (req, res) => {
   try {
     // Extract data from the request body
-    const { name, category, link, description, image } = req.body;
+    const { name, category, link, description, image,notification } = req.body;
 
     // Create a new resource object
     const newResource = new Resource({
@@ -15,6 +15,7 @@ const addResource = async (req, res) => {
       link,
       description,
       image,
+      notification,
     });
 
     // Save the resource to the database
@@ -42,8 +43,10 @@ const updateResource = async (req, res) => {
     // Update resource fields with new values from request body
     resource.name = req.body.name || resource.name;
     resource.category = req.body.category || resource.category;
+    resource.notification = req.body.notification || resource.notification;
     resource.link = req.body.link || resource.link;
     resource.description = req.body.description || resource.description;
+
 
     // Save the updated resource to the database
     const updatedResource = await resource.save();

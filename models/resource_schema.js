@@ -6,7 +6,8 @@ const resourceSchema = new mongoose.Schema(
     category: { type: String, required: true },
     link: { type: String, required: false },
     description: { type: String, required: true },
-    image: { type: String , required: true } // Define image field as Buffer data type
+    image: { type: String , required: true } ,// Define image field as Buffer data type
+    notification:{ type:Boolean ,required:true}
   },
   {
     timestamps: true,
