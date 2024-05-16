@@ -1,3 +1,4 @@
+import PResource from "../models/resource_pending_approval.js";
 import Resource from "../models/resource_schema.js";
 import Signup from "../models/signup_schema.js"
 import bcrypt from 'bcrypt';
@@ -60,6 +61,34 @@ const updateResource = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const approveResource = async (req, res) => {
+  try {
+    const resourceId = req.params.id;
+
+  const Aresource = await PResource.findById(resourceId);
+  const { name, category, link, description, image,notification } =Aresource ;
+
+    // Create a new resource object
+    const newResource = new Resource({
+      name,
+      category,
+      link,
+      description,
+      image,
+      notification,
+    });
+
+    // Save the resource to the database
+    const savedResource = await newResource.save();
+    
+    req.session.User
+    await Aresource.deleteOne();
+    res.redirect('/adminDashboard');
+  } catch (error) {
+    // If an error occurs, send an error response
+    res.status(500).json({ error: error.message });
+  }
+}
 
 
 const deleteResource = async (req, res) => {
@@ -86,6 +115,31 @@ const deleteResource = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+const udeleteResource = async (req, res) => {
+  try {
+    // Extract resource ID from the request parameters
+    const resourceId = req.params.id;
+
+    // Find the resource by ID in the database
+    const resource = await PResource.findById(resourceId);
+
+    // If resource not found, return 404 status
+    if (!resource) {
+      return res.status(404).json({ error: "Resource not found" });
+    }
+
+    // Delete the resource from the database
+    await resource.deleteOne();
+
+    // Send a success response
+    req.session.User
+    res.redirect('/adminDashboard');
+  } catch (error) {
+    // If an error occurs, send an error response
+    res.status(500).json({ error: error.message });
+  }
+}
+
 const addUser = async (req, res) => {
 
   const saltRounds = 10;
@@ -199,6 +253,8 @@ const admin_config = {
   addUser,
   deleteUser,
   updateUser,
+  udeleteResource,
+  approveResource,
   
 };
 export default admin_config;

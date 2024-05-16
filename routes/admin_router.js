@@ -3,6 +3,7 @@ import admin_config from "../controllers/admin_config.js";
 import { uploadImage } from "../controllers/uploadControllers.js";
 import { isAdmin } from "../controllers/authusers.js";
 import Resource from "../models/resource_schema.js";
+import PResource from "../models/resource_pending_approval.js";
 import User from "../models/signup_schema.js";
 
 var router = Router();
@@ -16,6 +17,11 @@ router.get("/adminresource",  isAdmin, async function (req, res) {
   const resources = await Resource.find();
       
   res.render("pages/adminresource", { resources  });
+});
+router.get("/checkresource",  isAdmin, async function (req, res) {
+  const resources = await PResource.find();
+      
+  res.render("pages/check_resource", { resources  });
 });
 router.get("/adminusers",  isAdmin, async function (req, res) {
   const users = await User.find();
@@ -42,6 +48,8 @@ router.post("/deleteResource/:id",  admin_config.deleteResource);
 router.post("/updateuser/:id",  admin_config.updateUser);
 router.post("/deleteuser/:id",  admin_config.deleteUser);
 router.post("/adduser", admin_config.addUser);
+router.post("/udeleteResource/:id",  admin_config.udeleteResource);
+router.post("/approveResource/:id",  admin_config.approveResource);
 
 
 
