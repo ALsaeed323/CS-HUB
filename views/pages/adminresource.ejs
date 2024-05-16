@@ -534,90 +534,43 @@ form {
 
 
 <body>
-  <div class="container">
-
-      <!-- Dashboard -->
-      <div class="main" id="mainpart">
-          <div class="cards">
-
-
-
-
-
-
-              <div class="card">
-                  <div class="card-content">
-                      <div class="number">
-                          <?php
-                          $sql = "SELECT a.*, p.*, u.* FROM addresses a JOIN permissions p ON a.user_id = p.user_id JOIN users u ON a.user_id = u.id";
-                          $resultuser = mysqli_query($conn, $sql);
-
-                          $counteruser = -1;
-                          while ($row = mysqli_fetch_assoc($resultuser)) {
-                              $counteruser++;
-                          }
-                          echo $counteruser ?>
-                      </div>
-                      <div class="card-name">Total users :</div>
-                  </div>
-                  <div class="icon-box">
-                      <i class="fas fa-users"></i>
-                  </div>
-              </div>
-
-
-              <div class="card">
-                  <div class="card-content">
-                      <div class="number">
-                          <?php
-                          $sql = "SELECT * from products ";
-                          $resultproduct = mysqli_query($conn, $sql);
-
-                          $counterproducts = 0;
-                          while ($row = mysqli_fetch_assoc($resultproduct)) {
-                              $counterproducts++;
-                          }
-                          echo $counterproducts ?>
-                      </div>
-                      <div class="card-name">pieces of equipment</div>
-                  </div>
-                  <div class="icon-box">
-                      <i class="fas fa-dumbbell"></i>
-                  </div>
-              </div>
-
-
-              <div class="card">
-                  <div class="card-content">
-                      <div class="number">
-                          <?php
-                          $sql = "SELECT * from orders  ";
-                          $resultproduct = mysqli_query($conn, $sql);
-
-                          $counterproducts = 0;
-                          while ($row = mysqli_fetch_assoc($resultproduct)) {
-                              $counterproducts++;
-                          }
-                          echo $counterproducts ?>
-                      </div>
-                      <div class="card-name"> Orders</div>
-                  </div>
-                  <div class="icon-box">
-                      <i class="fas fa-box-open"></i>
-                  </div>
-              </div>
-
-
-          </div>
-
-
-
-      </div>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-
-      <script src="../public/JS/admindasboard.js"></script>
-
-
+  <body>
+    <div class="container mt-5">
+      <h1>Resources</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Link</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% resources.forEach(resource => { %>
+            <tr>
+              <td><%= resource.name %></td>
+              <td><%= resource.category %></td>
+              <td><a href="<%= resource.link %>">Link <i class="fas fa-external-link-alt"></i></a></td>
+              <td><%= resource.description %></td>
+              <td>
+                <!-- Update button -->
+                <form action="/updateResource/<%= resource._id %>" method="GET">
+                  <button type="submit" class="btn update-btn"><i class="fas fa-edit"></i> Update</button>
+                </form>
+                <!-- Delete button -->
+                <form action="/deleteResource/<%= resource._id %>" method="POST">
+                  <button type="submit" class="btn delete-btn"><i class="fas fa-trash-alt"></i> Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
