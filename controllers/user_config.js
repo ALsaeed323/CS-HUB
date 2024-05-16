@@ -1,4 +1,5 @@
 import Signup from "../models/signup_schema.js";
+import PResource from "../models/resource_pending_approval.js";
 import bcrypt from 'bcrypt';
 
 
@@ -68,11 +69,39 @@ const logout = (req, res) => {
       res.status(500).send(error.message);
     }
   };
+  const UaddResource = async (req, res) => {
+    try {
+      // Extract data from the request body
+      const { name, category, link, description, image,notification,approval } = req.body;
+  
+      // Create a new resource object
+      const newResource = new PResource({
+        name,
+        category,
+        link,
+        description,
+        image,
+        notification,
+        approval,
+      });
+  
+      // Save the resource to the database
+      const savedResource = await newResource.save();
+      
+      req.session.User
+      res.redirect('/adminDashboard');
+    } catch (error) {
+      // If an error occurs, send an error response
+      res.status(500).json({ error: error.message });
+    }
+  };
   
   
   
   const user_config = {
-    logout,updateProfile,
+    logout,
+    updateProfile,
+    UaddResource,
   };
   export default user_config;
   
