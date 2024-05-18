@@ -96,6 +96,14 @@ const logout = (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
+
+  const getnot = async (req, res) => {
+
+    const notifi = await Resource.findOne(notification);
+    console.log(notifi);
+
+  }
+  
   const filterResource = async (req, res) => {
     const filter = await Resource.findOne();
 
@@ -107,6 +115,7 @@ const logout = (req, res) => {
     logout,
     updateProfile,
     UaddResource,
+    getnot,
   };
   export default user_config;
   

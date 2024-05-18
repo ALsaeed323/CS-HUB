@@ -16,6 +16,69 @@
 
     .delete-btn { background-color: #dc3545; color: #fff; }
     .update-btn { background-color: #0d6efd; color: #fff; }
+    .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  text-align: left;
+}
+
+/* Table header styling */
+.table thead tr {
+  background-color: #f2f2f2;
+  color: #333;
+  text-align: left;
+  font-weight: bold;
+}
+
+.table th, .table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Alternate row styling */
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect for rows */
+.table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Styling for buttons */
+.btn {
+  padding: 8px 12px;
+  margin: 0 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.update-btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+/* Icon styling */
+.btn i {
+  margin-right: 5px;
+}
   </style> 
 
     <title>Admin panel</title>
