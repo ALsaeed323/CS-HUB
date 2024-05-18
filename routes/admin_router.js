@@ -12,6 +12,7 @@ router.get("/adminDashboard",  isAdmin, async function (req, res) {
   const resourcesCount = await Resource.countDocuments();
   const usersCount = await User.countDocuments();
   const presourcesCount = await PResource.countDocuments();
+
  
       
   res.render("pages/adminDashboard" ,{ resourcesCount, usersCount,presourcesCount });
