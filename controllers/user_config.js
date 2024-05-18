@@ -97,12 +97,15 @@ const logout = (req, res) => {
     }
   };
 
-  const getnot = async (req, res) => {
-
-    const notifi = await Resource.findOne(notification);
-    console.log(notifi);
-
-  }
+  const getnot = async () => {
+    try {
+      const notifi = await Resource.find({ notification: true });
+      return notifi;
+    } catch (error) {
+      console.error('Error retrieving resources with notifications:', error);
+      throw error;
+    }
+  };
   
   const filterResource = async (req, res) => {
     const filter = await Resource.findOne();

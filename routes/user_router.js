@@ -7,6 +7,7 @@ import { isAuth } from "../controllers/authusers.js";
 
 
 
+
 var router = Router();
 
 router.get('/signin', function(req, res) {
@@ -21,6 +22,20 @@ router.get('/uaddresource', isAuth ,function(req, res) {
     res.render("pages/user_addresource",{user: req.session.User });
     });
     
+
+    router.get('/notification', isAuth, async (req, res) => {
+        try {
+          // Call the getnot function from user_config and await its result
+          const resources = await user_config.getnot();
+          
+          // Render the page with the retrieved resources
+          res.render('pages/notification', { resources,user: req.session.User  });
+        } catch (error) {
+          console.error('Error retrieving notifications:', error);
+          res.status(500).send('Server Error');
+        }
+      });
+        
 
 router.post("/",signinform.signinform);
 router.post("/logout",user_config.logout);
