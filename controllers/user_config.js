@@ -1,4 +1,5 @@
 import Signup from "../models/signup_schema.js";
+import Resource from "../models/resource_schema.js";
 import PResource from "../models/resource_pending_approval.js";
 import bcrypt from 'bcrypt';
 
@@ -95,7 +96,11 @@ const logout = (req, res) => {
       res.status(500).json({ error: error.message });
     }
   };
-  
+  const filterResource = async (req, res) => {
+    const filter = await Resource.findOne();
+
+  }
+   
   
   
   const user_config = {

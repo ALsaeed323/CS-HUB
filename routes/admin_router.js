@@ -9,9 +9,12 @@ import User from "../models/signup_schema.js";
 var router = Router();
 
 router.get("/adminDashboard",  isAdmin, async function (req, res) {
+  const resourcesCount = await Resource.countDocuments();
+  const usersCount = await User.countDocuments();
+  const presourcesCount = await PResource.countDocuments();
  
       
-  res.render("pages/adminDashboard");
+  res.render("pages/adminDashboard" { resourcesCount, usersCount,presourcesCount });
 });
 router.get("/adminresource",  isAdmin, async function (req, res) {
   const resources = await Resource.find();

@@ -548,15 +548,7 @@ form {
               <div class="card">
                   <div class="card-content">
                       <div class="number">
-                          <?php
-                          $sql = "SELECT a.*, p.*, u.* FROM addresses a JOIN permissions p ON a.user_id = p.user_id JOIN users u ON a.user_id = u.id";
-                          $resultuser = mysqli_query($conn, $sql);
-
-                          $counteruser = -1;
-                          while ($row = mysqli_fetch_assoc($resultuser)) {
-                              $counteruser++;
-                          }
-                          echo $counteruser ?>
+                         <%usersCount%>
                       </div>
                       <div class="card-name">Total users :</div>
                   </div>
@@ -569,17 +561,9 @@ form {
               <div class="card">
                   <div class="card-content">
                       <div class="number">
-                          <?php
-                          $sql = "SELECT * from products ";
-                          $resultproduct = mysqli_query($conn, $sql);
-
-                          $counterproducts = 0;
-                          while ($row = mysqli_fetch_assoc($resultproduct)) {
-                              $counterproducts++;
-                          }
-                          echo $counterproducts ?>
+                        <%resourcesCount%>
                       </div>
-                      <div class="card-name">pieces of equipment</div>
+                      <div class="card-name">Total of Resources</div>
                   </div>
                   <div class="icon-box">
                       <i class="fas fa-dumbbell"></i>
@@ -590,17 +574,9 @@ form {
               <div class="card">
                   <div class="card-content">
                       <div class="number">
-                          <?php
-                          $sql = "SELECT * from orders  ";
-                          $resultproduct = mysqli_query($conn, $sql);
-
-                          $counterproducts = 0;
-                          while ($row = mysqli_fetch_assoc($resultproduct)) {
-                              $counterproducts++;
-                          }
-                          echo $counterproducts ?>
+                        <%presourcesCount%>
                       </div>
-                      <div class="card-name"> Orders</div>
+                      <div class="card-name"> Total Pending Approval </div>
                   </div>
                   <div class="icon-box">
                       <i class="fas fa-box-open"></i>
