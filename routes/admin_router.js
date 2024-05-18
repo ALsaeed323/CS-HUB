@@ -14,7 +14,7 @@ router.get("/adminDashboard",  isAdmin, async function (req, res) {
   const presourcesCount = await PResource.countDocuments();
  
       
-  res.render("pages/adminDashboard" { resourcesCount, usersCount,presourcesCount });
+  res.render("pages/adminDashboard" ,{ resourcesCount, usersCount,presourcesCount });
 });
 router.get("/adminresource",  isAdmin, async function (req, res) {
   const resources = await Resource.find();
