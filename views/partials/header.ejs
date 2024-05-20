@@ -13,12 +13,11 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="basic-navbar-nav">
-      <form class="d-flex me-auto">
+      <form class="d-flex me-auto" action="/search" method="get">
         <div class="input-group">
           <input
             type="text"
-            name="q"
-            id="q"
+            name="searchtext"
             placeholder="Search Products..."
             aria-label="Search Products"
             aria-describedby="button-search"
@@ -26,7 +25,7 @@
           />
           <button
             class="btn btn-outline-primary"
-            onclick="searchHandler(event)"
+            type="submit"
             id="button-search"
             aria-label="Search Products Button"
           >
@@ -50,6 +49,8 @@
 
           <ul class="dropdown-menu" aria-labelledby="basic-nav-dropdown">
             
+
+
                 <li>
               <a class="dropdown-item" href="/softwareengineer">Software Engineer</a>
             </li>

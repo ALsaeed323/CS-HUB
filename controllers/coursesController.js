@@ -24,4 +24,25 @@ const getsoftware=async(req,res)=>{
   
 res.render("pages/resources",{ resource: resources,user: req.session.User });
 };
-export {getAI,getcyber,getsoftware};
+const search=async (req,res)=>{
+const {searchtext}=req.query;
+console.log(searchtext)
+const hh=(searchtext|| "").toLowerCase();
+const regex= new RegExp(hh,"ig")
+console.log(regex)
+const query = {
+    $or: [
+      { name: regex },
+      { category: regex },
+      { link: regex },
+      { description: regex },
+      { image: regex },
+    ],
+  };
+  Resource.find(query)
+    .then((result) => {
+        res.render("pages/resources",{ resource: result,user: req.session.User });
+    })
+    .catch((err) => console.log(err));
+};
+export {getAI,getcyber,getsoftware,search};

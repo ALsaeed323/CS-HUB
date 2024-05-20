@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import Resource from "../models/resource_schema.js";
-import {getAI,getcyber,getsoftware} from "../controllers/coursesController.js"
+import {getAI,getcyber,getsoftware,search} from "../controllers/coursesController.js"
 
 
 
@@ -20,4 +20,5 @@ res.render("pages/resources",{ resource: resources,user: req.session.User });
 router.get('/ai',getAI);
 router.get('/cybersecurity',getcyber);
 router.get('/softwareengineer',getsoftware);
+router.get('/search',search)
 export default router;
