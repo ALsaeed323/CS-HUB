@@ -35,8 +35,41 @@
         </div>
       </form>
       <ul class="navbar-nav ms-auto w-100 justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link" href="/resources">Courses</a>
+        <li class="nav-item dropdown">
+          <!-- <a class="nav-link" href="/resources">Courses</a> -->
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="basic-nav-dropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            courses
+          </a>
+
+          <ul class="dropdown-menu" aria-labelledby="basic-nav-dropdown">
+            
+                <li>
+              <a class="dropdown-item" href="/softwareengineer">Software Engineer</a>
+            </li>
+            
+                <li>
+              <a class="dropdown-item" href="/cybersecurity">Cyber security</a>
+            </li>
+            
+                <li>
+              <a class="dropdown-item" href="/ai">AI</a>
+            </li>
+            
+            <li><hr class="dropdown-divider" /></li>
+            <form id="logoutForm" action="/resources" method="get" >
+              <li>
+                <a href="#" class="dropdown-item" id="signOutLink">ALL Courses</a>
+              </li>
+            </form>
+            
+          </ul>
         </li>
           
        
