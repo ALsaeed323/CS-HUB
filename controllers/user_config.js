@@ -1,6 +1,7 @@
 import Signup from "../models/signup_schema.js";
 import Resource from "../models/resource_schema.js";
 import PResource from "../models/resource_pending_approval.js";
+import Enrollment from "../models/enrollment.js";
 import bcrypt from 'bcrypt';
 
 
@@ -107,11 +108,34 @@ const logout = (req, res) => {
     }
   };
   
-  const filterResource = async (req, res) => {
-    const filter = await Resource.findOne();
-
-  }
+  const enrollment = async (req, res) => {
+    const user= req.session.User;
    
+    const resourceId = req.params.id;
+  
+    if (!user) {
+
+      res.redirect("/signin")
+}else {
+   const userId = user._id;
+   const existingEnrollment = await Enrollment.findOne({ user_id: userId, resource_id: resourceId });
+
+   if (existingEnrollment) {
+       // User is already enrolled, show message
+       console.log("existed");
+       res.redirect("/")
+      } else {
+    const enroll = new Enrollment ({
+      user_id:userId,
+      resource_id:resourceId,
+      
+    });
+    await enroll.save()
+    res.redirect("/")
+  }
+}
+};
+
   
   
   const user_config = {
@@ -119,6 +143,7 @@ const logout = (req, res) => {
     updateProfile,
     UaddResource,
     getnot,
+    enrollment,
   };
   export default user_config;
   
