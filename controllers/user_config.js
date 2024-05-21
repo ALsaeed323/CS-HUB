@@ -152,8 +152,6 @@ const enrolledCourses = async (req, res) => {
         enrolledCourses.push(enrolledCourse);
       }
     }
-
-    console.log(enrolledCourses);
     return enrolledCourses;
   } catch (error) {
     console.error("Error fetching enrolled courses:", error);
