@@ -41,6 +41,7 @@ router.post("/",signinform.signinform);
 router.post("/logout",user_config.logout);
 router.post("/profile/:id",user_config.updateProfile);
 router.post("/uaddresource", uploadImage ,user_config.UaddResource);
+router.post("/enroll/:id",  user_config.enrollment);
 
 
 export default router;

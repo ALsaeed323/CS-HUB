@@ -64,9 +64,9 @@
             </li>
             
             <li><hr class="dropdown-divider" /></li>
-            <form id="logoutForm" action="/resources" method="get" >
+            <form action="/resources" method="get" >
               <li>
-                <a href="#" class="dropdown-item" id="signOutLink">ALL Courses</a>
+                <a href="#" class="dropdown-item" >ALL Courses</a>
               </li>
             </form>
             
@@ -124,7 +124,7 @@
             </li>
             <li><hr class="dropdown-divider" /></li>
             <%}%>
-            <form id="logoutForm" action="/logout" method="post" >
+            <form id="logoutForm" action="/logout" method="post">
               <li>
                 <a href="#" class="dropdown-item" id="signOutLink">Sign Out</a>
               </li>
@@ -142,8 +142,10 @@
   </div>
 </nav>
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('signOutLink').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent default link behavior (navigating to href)
+    event.preventDefault(); // Prevent default link behavior
     document.getElementById('logoutForm').submit(); // Submit the form
   });
+});
 </script>

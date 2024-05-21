@@ -45,4 +45,11 @@ const query = {
     })
     .catch((err) => console.log(err));
 };
-export {getAI,getcyber,getsoftware,search};
+
+const resourcesDetails = async(req,res)=>{
+    const resourceId = req.params.id;
+    console.log(req.params);
+    const rdetail= await Resource.findById(resourceId);
+    return rdetail;
+}
+export {getAI,getcyber,getsoftware,search,resourcesDetails,};
