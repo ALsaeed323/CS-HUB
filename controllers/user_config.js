@@ -136,7 +136,32 @@ const logout = (req, res) => {
 }
 };
 
-  
+const enrolledCourses = async (req, res) => {
+  try {
+    const user = req.session.User;
+    const userId = user._id;
+    const enrollments = await Enrollment.find({ user_id: userId });
+    
+    // Array to store fetched resources
+    const enrolledCourses = [];
+
+    for (let i = 0; i < enrollments.length; i++) {
+      const resource_id = enrollments[i].resource_id;
+      const enrolledCourse = await Resource.findById(resource_id);
+      if (enrolledCourse) {
+        enrolledCourses.push(enrolledCourse);
+      }
+    }
+
+    console.log(enrolledCourses);
+    return enrolledCourses;
+  } catch (error) {
+    console.error("Error fetching enrolled courses:", error);
+    // Handle error appropriately
+    res.status(500).json({ error: "Internal server error" });
+  }
+}
+
   
   const user_config = {
     logout,
@@ -144,6 +169,7 @@ const logout = (req, res) => {
     UaddResource,
     getnot,
     enrollment,
+    enrolledCourses,
   };
   export default user_config;
   

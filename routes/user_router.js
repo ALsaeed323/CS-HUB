@@ -23,7 +23,7 @@ router.get('/uaddresource', isAuth ,function(req, res) {
     });
     
 
-    router.get('/notification', isAuth, async (req, res) => {
+router.get('/notification', isAuth, async (req, res) => {
         try {
           // Call the getnot function from user_config and await its result
           const resources = await user_config.getnot();
@@ -35,7 +35,11 @@ router.get('/uaddresource', isAuth ,function(req, res) {
           res.status(500).send('Server Error');
         }
       });
-        
+
+router.get('/yourcourses', isAuth ,async function(req, res) {
+    const resources = await user_config.enrolledCourses(req,res);  // Pass req, res
+    res.render("pages/enrolledCourses",{user: req.session.User, resources });
+});
 
 router.post("/",signinform.signinform);
 router.post("/logout",user_config.logout);
