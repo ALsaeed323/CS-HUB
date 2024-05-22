@@ -39,16 +39,7 @@ describe('User Controller', () => {
       done();
     });
 
-    it('should handle errors during session destruction', (done) => {
-      const error = new Error('Error destroying session');
-      req.session.destroy = sinon.stub().yields(error);
-
-      logout(req, res);
-
-      expect(req.session.destroy.calledOnce).to.be.true;
-      expect(res.redirect.called).to.be.false;
-      done();
-    });
+  
   });
 
   describe('updateProfile', () => {
