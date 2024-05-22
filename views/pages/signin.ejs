@@ -1,5 +1,6 @@
       <head>
         <%- include('../partials/head'); %>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <%- include('../partials/header'); %>
       </head>
       <div class=" mt-3 container small-container">
@@ -21,8 +22,42 @@
             <a href="/signup?redirect=example">Create your account</a>
           </div>
         </form>
+        <div id="error-message" class="text-danger"></div>
       </div>
 
 
 
       <%- include('../partials/footer'); %>
+<script>
+$(document).ready(function() {
+  $('#form').on('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    
+    var formData = {
+      logmail: $('#email').val(),
+      logpassword: $('#password').val()
+    };
+    
+    $.ajax({
+      type: 'POST',
+      url: '/', // Your server-side script to handle the form submission
+      data: formData,
+      dataType: 'json',
+      encode: true,
+      success: function(response) {
+        if (response.success) {
+          // Redirect to the desired page on successful login
+          window.location.href = response.redirectUrl;
+        } else {
+          // Display the error message returned by the server
+          $('#error-message').text(response.message);
+        }
+      },
+      error: function() {
+        // Handle any errors that occurred during the AJAX request
+        $('#error-message').text('An error occurred while processing your request. Please try again.');
+      }
+    });
+  });
+});
+</script>
