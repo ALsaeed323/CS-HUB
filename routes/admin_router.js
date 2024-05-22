@@ -44,6 +44,10 @@ router.get("/updateuser/:id",  isAdmin, function (req, res) {
 router.get("/adduser",  isAdmin, function (req, res) {
   res.render("pages/adduser");
 });
+router.get('/admincourses', isAdmin ,async function(req, res) {
+  const resources = await Resource.find();
+  res.render("pages/admincourses",{user: req.session.User, resources });
+});
 
 
 router.post("/addResource", uploadImage, admin_config.addResource);

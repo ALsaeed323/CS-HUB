@@ -339,7 +339,14 @@ object-fit: cover;
             <h1 class="text-lowercase font-weight-bold">
                 Explore This World
             </h1>
-            <a href="/resources" class="btn btn-yellow"> view collection </a>
+            <% if ((user && user.Type === 'user') || typeof user === 'undefined') { %>
+              <a href="/resources" class="btn btn-yellow">View ALL Collection</a>
+            <% } else if (user && user.Type === 'Admin') { %>
+              <a href="/admincourses" class="btn btn-yellow">View ALL Courses</a>
+            <% } %>
+            
+            
+            
         </div>
     </div>
     <section id="services" class="services py-5 text-center">
@@ -482,7 +489,11 @@ object-fit: cover;
                     <p class="text-capitalize">
                         A  curriculum reflecting the ever-evolving landscape of computer science, tailored to match the pulse of technology expression.
                     </p>
-                    <a href="/resources" class="btn btn-yellow"> view collection </a>
+                    <% if ((user && user.Type === 'user') || typeof user === 'undefined') { %>
+                      <a href="/resources" class="btn btn-yellow">View ALL Collection</a>
+                    <% } else if (user && user.Type === 'Admin') { %>
+                      <a href="/admincourses" class="btn btn-yellow">View ALL Courses</a>
+                    <% } %>
                 </div>
             </div>
         </div>

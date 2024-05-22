@@ -7,7 +7,7 @@ var router = Router();
 router.get('/', function(req, res) {
  
 
-res.render("pages/index",{user: req.session.User });
+res.render("pages/index",{user: req.session.User  });
 
  
 });
