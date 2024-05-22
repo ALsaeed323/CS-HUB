@@ -3,16 +3,13 @@ import bcrypt from 'bcrypt';
 
 const signinform = async (req, res) => {
   try {
-
-    const email=req.body.logmail
-    const mypassword=req.body.logpassword 
-
+    const {logmail, logpassword }= req.body;
    
-    const user = await Signup.findOne({ mail: email });
+    const user = await Signup.findOne({ mail: logmail });
 
     if (user) {
      
-      const passwordMatch = await bcrypt.compare(mypassword, user.password);
+      const passwordMatch = await bcrypt.compare(logpassword, user.password);
 
       if (passwordMatch) {
         console.log("User found and password matched:", user);
@@ -25,16 +22,17 @@ const signinform = async (req, res) => {
     else{
    
          
-
-      res.render('pages/index', { user: req.session.User });
+      res.json({ success: true, redirectUrl: 'pages/index', user: req.session.User } );
     }
         
       } else {
         console.log("Password mismatch.");
+        res.json({ success: false, message: 'Password mismatch.' });
         
       }
     } else {
       console.log("User not found.");
+      res.json({ success: false, message: 'User not found.' });
       
     }
   } catch (error) {
