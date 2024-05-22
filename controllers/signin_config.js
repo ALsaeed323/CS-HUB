@@ -16,13 +16,13 @@ const signinform = async (req, res) => {
         req.session.User = user;
         if(req.session.User.Type==='user'){
    
-          res.render('pages/index', { user: req.session.User });
+          res.json({ success: true, redirectUrl: '/', user: req.session.User } );
   
         }
     else{
    
          
-      res.json({ success: true, redirectUrl: 'pages/index', user: req.session.User } );
+      res.json({ success: true, redirectUrl: '/', user: req.session.User } );
     }
         
       } else {
