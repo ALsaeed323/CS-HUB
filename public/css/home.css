@@ -69,7 +69,7 @@ object-fit: cover;
   }
   .banner{
     min-height: calc(100vh - 101px);
-    background: url(../image/background0.jpg);
+    background: url(../image/background0.gif);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
