@@ -66,11 +66,7 @@
             <li><hr class="dropdown-divider" /></li>
             <form action="/resources" method="get" >
               <li>
-                <% if ((user && user.Type === 'user') || typeof user === 'undefined') { %>
-                  <a href="/resources" class="dropdown-item">ALL Courses</a>
-                <% } else if (user && user.Type === 'Admin') { %>
-                  <a href="/admincourses" class="dropdown-item">ALL Courses</a>
-                <% } %>
+                <a href="/resources" class="dropdown-item" >ALL Courses</a>
               </li>
             </form>
             
